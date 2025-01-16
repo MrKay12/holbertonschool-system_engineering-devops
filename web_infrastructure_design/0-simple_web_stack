@@ -1,0 +1,60 @@
+Method
+Components Setup:
+
+Use 1 server to host all components.
+Install Nginx as the web server to handle HTTP requests.
+Set up an Application Server to run the backend logic and business processes.
+Deploy Application Files (Codebase) for the web application.
+Configure a MySQL Database for data storage.
+Assign a domain name (foobar.com) with a www DNS record pointing to the server’s IP (e.g., 8.8.8.8).
+
+
+DNS resolving the domain to IP.
+Nginx as the entry point on the server.
+The application server processing requests.
+MySQL storing and retrieving data.
+Add arrows showing communication between components.
+
+
+Technical Details:
+
+Configure Nginx to forward requests to the application server.
+Use TCP/IP for communication between the user’s browser and the server.
+Set up MySQL with the application server as its client.
+Submission:
+
+Take a picture/screenshot of your diagram and upload it to an image hosting service.
+Provide the image link in the required file.
+Explanations
+
+
+Components:
+
+Server: A computer hosting all the services and applications needed for the website.
+Domain Name: Maps a human-readable address (www.foobar.com) to the server’s IP address using DNS.
+DNS Record (www): Specifies that the subdomain www resolves to the server’s IP address.
+Web Server (Nginx): Handles incoming HTTP requests and forwards them to the application server.
+Application Server: Executes business logic and generates responses.
+Database (MySQL): Stores and manages application data.
+
+
+Communication:
+
+The user’s browser sends a request to www.foobar.com.
+DNS resolves www.foobar.com to 8.8.8.8.
+The request reaches Nginx on the server.
+Nginx forwards the request to the application server.
+The application server queries MySQL if needed, processes the data, and sends a response back to Nginx.
+Nginx delivers the response to the user’s browser.
+
+
+Issues:
+
+Single Point of Failure (SPOF):
+If the server goes down, the entire website becomes inaccessible.
+Downtime During Maintenance:
+Deploying new code or restarting the web server causes temporary unavailability.
+Scalability:
+A single server cannot handle high traffic efficiently.
+
+![alt text](image0.png)
