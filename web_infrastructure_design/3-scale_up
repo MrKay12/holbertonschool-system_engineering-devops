@@ -1,0 +1,103 @@
+Method
+Enhancements to the Setup:
+
+Add 1 additional server to distribute roles and improve scalability.
+
+Introduce 1 additional load balancer (HAProxy):
+Configure it in Active-Active mode with the existing load balancer.
+Separate the roles of the servers:
+Dedicate one server each for:
+Web server (Nginx).
+Application server.
+Database server.
+Ensure the load balancers distribute traffic to the web server layer.
+
+
+Update the existing infrastructure diagram:
+Show two load balancers working together in a cluster (Active-Active configuration).
+Separate servers for the web, application, and database layers.
+
+Indicate communication flows between:
+Load balancers and web servers.
+Web servers and application servers.
+Application servers and the database.
+Clearly mark which roles each server performs.
+
+
+Technical Configuration:
+
+Load Balancers:
+Use HAProxy in an Active-Active setup to ensure high availability and redundancy.
+Configure them to forward requests to the web server layer.
+
+Server Roles:
+Web server handles static content and forwards dynamic requests to the application server.
+Application server processes backend logic and queries the database server.
+Database server handles both read and write operations with replication.
+
+Database:
+Maintain the Primary-Replica (Master-Slave) configuration to support scaling for read-heavy operations.
+
+Network Configuration:
+Update firewall rules to reflect the new architecture:
+Load balancers communicate only with the web server.
+Web server communicates only with the application server.
+Application server communicates only with the database.
+
+
+Submission:
+
+Take a picture/screenshot of your updated diagram.
+Upload it to an image hosting service and provide the link in the required file.
+
+
+Explanations:
+
+Components:
+
+Load Balancers (Active-Active):
+Share the load and improve fault tolerance.
+Provide redundancy to prevent a single point of failure at the load balancer level.
+
+Web Server (Nginx):
+Dedicated to handling HTTP requests and static content.
+
+Application Server:
+Dedicated to executing backend logic and processing user requests.
+
+Database Server:
+Handles data storage and queries with replication to support high availability.
+
+
+Communication Flow:
+
+The user’s browser sends an HTTPS request to www.foobar.com.
+DNS resolves the domain to the cluster of load balancers.
+One of the load balancers routes the request to a web server.
+The web server forwards dynamic requests to the application server.
+The application server interacts with the database server as needed.
+The response is returned to the user through the same flow.
+Issues Addressed:
+
+Load Balancer SPOF:
+Adding a second load balancer removes the single point of failure at the entry point.
+
+Scaling:
+Dedicated servers for web, application, and database layers improve scalability.
+
+Traffic Handling:
+Active-Active load balancers ensure efficient traffic distribution.
+
+
+Remaining Issues:
+
+SSL Termination:
+If SSL is terminated at the load balancers, traffic within the internal network is unencrypted.
+
+Database Scalability:
+The Primary database server may still become a bottleneck under write-heavy loads.
+
+Operational Complexity:
+Increased number of components requires more monitoring, management, and maintenance.
+
+![alt text](image3.png)
