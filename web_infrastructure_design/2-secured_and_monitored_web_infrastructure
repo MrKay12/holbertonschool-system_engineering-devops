@@ -1,0 +1,93 @@
+Method
+Enhancements to the Setup:
+
+
+Add 3 firewalls:
+One for the load balancer.
+One for the web/application servers.
+One for the database server.
+
+Implement HTTPS using an SSL certificate:
+Terminate SSL at the load balancer level to encrypt traffic from the client to the load balancer.
+
+Integrate monitoring tools:
+Install monitoring agents (e.g., Sumologic, Datadog) on all servers.
+Maintain a Primary-Replica (Master-Slave) database setup for scalability.
+
+
+Firewalls protecting each server layer.
+SSL/TLS encryption for traffic between the client and the load balancer.
+Monitoring clients installed on all servers, with data sent to a monitoring service.
+Use labels and arrows to indicate new security and monitoring features.
+
+
+Technical Configuration:
+
+Firewalls:
+Configure rules to allow only required traffic:
+Load balancer: Accepts traffic on ports 80 (HTTP) and 443 (HTTPS).
+Web servers: Accept traffic only from the load balancer.
+Database server: Accept traffic only from web servers.
+
+SSL Certificate:
+Obtain and install an SSL certificate on the load balancer.
+Redirect all HTTP traffic to HTTPS.
+
+Monitoring Tools:
+Install and configure agents to collect metrics (CPU, memory, disk usage, QPS, etc.).
+Send logs and metrics to a central monitoring service (e.g., Sumologic).
+
+
+Submission:
+
+Take a picture/screenshot of your updated diagram.
+Upload it to an image hosting service and provide the link in the required file.
+Explanations
+
+
+Components:
+
+Firewalls:
+Restrict unauthorized access and protect servers from malicious traffic.
+
+HTTPS (SSL/TLS):
+Encrypts traffic between the client and the load balancer.
+Protects sensitive data from being intercepted during transmission.
+
+Monitoring Tools:
+Provide real-time insights into system health and performance.
+Alert administrators to issues like high load or server failures.
+
+
+Communication Flow:
+
+The user’s browser sends an HTTPS request to www.foobar.com.
+DNS resolves the domain to the Load Balancer’s IP.
+The Load Balancer decrypts the request using the SSL certificate.
+The Load Balancer forwards the request to a web/application server through the firewall.
+The web server processes the request and communicates with the database through another firewall.
+The response is returned to the user, re-encrypted by the Load Balancer.
+
+
+New Issues Addressed:
+
+Security:
+Firewalls limit unauthorized access.
+HTTPS ensures data integrity and confidentiality.
+
+Visibility:
+Monitoring tools provide insights into performance and potential failures.
+
+
+Remaining Issues:
+
+SSL Termination at Load Balancer:
+Traffic between the Load Balancer and web servers is unencrypted.
+
+Database Write Bottleneck:
+Only one database server handles writes, which can become a bottleneck under heavy load.
+
+Monolithic Server Design:
+Servers with combined components (web, application) reduce fault isolation and scalability.
+
+![alt text](image2.png)
