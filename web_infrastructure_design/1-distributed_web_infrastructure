@@ -1,0 +1,86 @@
+Method
+Components Setup:
+
+Add 2 servers to the infrastructure, making a total of 3 servers:
+2 servers for the web and application layers.
+1 server for the database.
+Introduce a Load Balancer (HAProxy) to distribute traffic across the two web/application servers.
+Continue using Nginx on both web servers to handle incoming requests.
+Deploy the application files (codebase) on both web/application servers.
+Use MySQL as the database, ensuring both web servers communicate with it.
+
+
+The user’s browser sending a request to www.foobar.com.
+DNS resolving the domain to the Load Balancer’s IP.
+The Load Balancer distributing requests to one of the two web/application servers.
+Both web servers communicating with the database server.
+Use arrows to represent communication between components.
+
+
+Technical Configuration:
+
+Configure HAProxy to use a distribution algorithm:
+Round Robin (distributes traffic evenly).
+Least Connections (routes to the server with the fewest active connections).
+Ensure stateless application handling, so requests can be routed to any server.
+Set up the database with a Primary-Replica (Master-Slave) configuration:
+The primary server handles writes, and replicas handle reads.
+
+
+Submission:
+
+Take a picture/screenshot of your whiteboard or software-based diagram.
+Upload it to an image hosting service and provide the link in the required file.
+Explanations
+
+
+Components:
+
+Load Balancer (HAProxy):
+Distributes incoming traffic across multiple servers, preventing overloading.
+Improves fault tolerance by redirecting traffic if one server fails.
+
+Web Servers (Nginx):
+Serve static files and forward dynamic requests to the application server.
+
+Application Server:
+Processes business logic and interacts with the database.
+
+Database (Primary-Replica):
+Primary handles writes.
+Replicas handle read queries, improving performance and reliability.
+
+
+Communication Flow:
+
+The user’s browser sends a request to www.foobar.com.
+DNS resolves the domain to the Load Balancer’s IP address.
+The Load Balancer forwards the request to one of the web/application servers.
+The web server processes the request (fetching data from the database if necessary).
+The response is returned to the Load Balancer, which forwards it to the user.
+
+
+Issues Addressed:
+
+SPOF:
+Redundant web/application servers ensure that one server’s failure doesn’t bring down the site.
+
+Traffic Handling:
+The Load Balancer distributes traffic, enabling better scalability and handling more users.
+
+Performance:
+The database replication improves read performance and reduces load on the primary database.
+
+
+Remaining Issues:
+
+SPOF at the Load Balancer:
+If the Load Balancer fails, the entire system goes down.
+
+No Security:
+No firewalls or HTTPS implementation.
+
+No Monitoring:
+Lack of visibility into system performance or potential issues.
+
+![alt text](image1.png)
