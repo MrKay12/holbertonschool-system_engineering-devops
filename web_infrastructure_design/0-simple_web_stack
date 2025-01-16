@@ -21,6 +21,8 @@ Technical Details:
 Configure Nginx to forward requests to the application server.
 Use TCP/IP for communication between the user’s browser and the server.
 Set up MySQL with the application server as its client.
+
+
 Submission:
 
 Take a picture/screenshot of your diagram and upload it to an image hosting service.
@@ -54,7 +56,10 @@ Single Point of Failure (SPOF):
 If the server goes down, the entire website becomes inaccessible.
 Downtime During Maintenance:
 Deploying new code or restarting the web server causes temporary unavailability.
+
+
 Scalability:
+
 A single server cannot handle high traffic efficiently.
 
 ![alt text](image0.png)
